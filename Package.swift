@@ -7,31 +7,24 @@ let package = Package(
     name: "GTCommonSDK",
     platforms: [.iOS(.v13)],
     products: [
-        // Products define the executables and libraries a package produces, and make them visible to other packages.
         .library(
             name: "GTCommonSDK",
             targets: ["GTCommonSDK"]
-        ),
-        .library(
-            name: "GTCommonSDKResolv",
-            targets: ["GTCommonSDKResolv"]
         )
     ],
-    dependencies: [
-        // Dependencies declare other packages that this package depends on.
-        // .package(url: /* package url */, from: "1.0.0"),
-    ],
+    dependencies: [],
     targets: [
-        // Targets are the basic building blocks of a package. A target can define a module or a test suite.
-        // Targets can depend on other targets in this package, and on products in packages this package depends on.
-        // 这是官方的 sdk 内容
-        // .binaryTarget(name: "GTCommonSDKPackage", path: "GTCommonSDK.xcframework")
-        .binaryTarget(name: "GTCommonSDK", path: "GTCommonSDK.xcframework"),
-        // 添加系统的 resolv 依赖
+        .binaryTarget(
+            name: "GTCommonSDKBinary",  // 重命名二进制 target 以避免冲突
+            path: "GTCommonSDK.xcframework"
+        ),
         .target(
-            name: "GTCommonSDKResolv",
+            name: "GTCommonSDK",
+            dependencies: [
+                "GTCommonSDKBinary"  // 让这个 wrapper target 依赖二进制文件
+            ],
             linkerSettings: [
-                .linkedLibrary("resolv")
+                .linkedLibrary("resolv")  // 在这里声明链接，它会随 target 传递
             ]
         )
     ]
