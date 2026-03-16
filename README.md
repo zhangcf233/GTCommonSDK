@@ -12,4 +12,4 @@
 
 - **2025.10.13** 修复了系统字符依赖的异常 [v3.1.100](https://github.com/zhangcf233/GTCommonSDK/releases/tag/3.1.100)
 
-- **2026.03.16** 添加 oc 链接符号说明 `Build Settings` / `Linking - Generl` / `Other Linker Flags` 添加 `-Objc` 
+- **2026.03.16** 添加 oc 链接符号说明 `Build Settings` / `Linking - Generl` / `Other Linker Flags` 添加 `-ObjC` 
